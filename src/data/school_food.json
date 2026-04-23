@@ -1,0 +1,562 @@
+[
+  {
+    "id": 1,
+    "ingredient": "Rice",
+    "food_group": "Grain",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 0.82,
+    "water_use_L_per_serving": 1020
+  },
+  {
+    "id": 2,
+    "ingredient": "Roti",
+    "food_group": "Grain",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.68,
+    "water_use_L_per_serving": 200
+  },
+  {
+    "id": 3,
+    "ingredient": "Sambar",
+    "food_group": "Legume+Veg",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.45,
+    "water_use_L_per_serving": 300
+  },
+  {
+    "id": 4,
+    "ingredient": "Dal",
+    "food_group": "Legume",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.55,
+    "water_use_L_per_serving": 1000
+  },
+  {
+    "id": 5,
+    "ingredient": "Rajma",
+    "food_group": "Legume",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.85,
+    "water_use_L_per_serving": 980
+  },
+  {
+    "id": 6,
+    "ingredient": "Potato",
+    "food_group": "Vegetable",
+    "nutrition_score": 5,
+    "ghg_kgco2e_per_serving": 0.25,
+    "water_use_L_per_serving": 43
+  },
+  {
+    "id": 7,
+    "ingredient": "Spinach",
+    "food_group": "Vegetable",
+    "nutrition_score": 9,
+    "ghg_kgco2e_per_serving": 0.18,
+    "water_use_L_per_serving": 60
+  },
+  {
+    "id": 8,
+    "ingredient": "Carrot",
+    "food_group": "Vegetable",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.17,
+    "water_use_L_per_serving": 30
+  },
+  {
+    "id": 9,
+    "ingredient": "Tomato",
+    "food_group": "Vegetable",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.16,
+    "water_use_L_per_serving": 50
+  },
+  {
+    "id": 10,
+    "ingredient": "Onion",
+    "food_group": "Vegetable",
+    "nutrition_score": 5,
+    "ghg_kgco2e_per_serving": 0.19,
+    "water_use_L_per_serving": 35
+  },
+  {
+    "id": 11,
+    "ingredient": "Milk (200ml)",
+    "food_group": "Dairy",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.59,
+    "water_use_L_per_serving": 500
+  },
+  {
+    "id": 12,
+    "ingredient": "Curd (150g)",
+    "food_group": "Dairy",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.45,
+    "water_use_L_per_serving": 380
+  },
+  {
+    "id": 13,
+    "ingredient": "Paneer",
+    "food_group": "Dairy",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 2.2,
+    "water_use_L_per_serving": 1000
+  },
+  {
+    "id": 14,
+    "ingredient": "Egg",
+    "food_group": "Protein",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 1.0,
+    "water_use_L_per_serving": 500
+  },
+  {
+    "id": 15,
+    "ingredient": "Chicken (small)",
+    "food_group": "Protein",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 3.55,
+    "water_use_L_per_serving": 648
+  },
+  {
+    "id": 16,
+    "ingredient": "Fish (small)",
+    "food_group": "Protein",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 1.2,
+    "water_use_L_per_serving": 375
+  },
+  {
+    "id": 17,
+    "ingredient": "Banana",
+    "food_group": "Fruit",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.28,
+    "water_use_L_per_serving": 90
+  },
+  {
+    "id": 18,
+    "ingredient": "Apple",
+    "food_group": "Fruit",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.22,
+    "water_use_L_per_serving": 70
+  },
+  {
+    "id": 19,
+    "ingredient": "Orange",
+    "food_group": "Fruit",
+    "nutrition_score": 9,
+    "ghg_kgco2e_per_serving": 0.16,
+    "water_use_L_per_serving": 55
+  },
+  {
+    "id": 20,
+    "ingredient": "Papaya",
+    "food_group": "Fruit",
+    "nutrition_score": 9,
+    "ghg_kgco2e_per_serving": 0.19,
+    "water_use_L_per_serving": 60
+  },
+  {
+    "id": 21,
+    "ingredient": "Chickpeas",
+    "food_group": "Legume",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.85,
+    "water_use_L_per_serving": 1050
+  },
+  {
+    "id": 22,
+    "ingredient": "Green Peas",
+    "food_group": "Legume",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.35,
+    "water_use_L_per_serving": 45
+  },
+  {
+    "id": 23,
+    "ingredient": "Broccoli",
+    "food_group": "Vegetable",
+    "nutrition_score": 9,
+    "ghg_kgco2e_per_serving": 0.22,
+    "water_use_L_per_serving": 50
+  },
+  {
+    "id": 24,
+    "ingredient": "Cauliflower",
+    "food_group": "Vegetable",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.22,
+    "water_use_L_per_serving": 50
+  },
+  {
+    "id": 25,
+    "ingredient": "Cucumber",
+    "food_group": "Vegetable",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 0.14,
+    "water_use_L_per_serving": 30
+  },
+  {
+    "id": 26,
+    "ingredient": "Beetroot",
+    "food_group": "Vegetable",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.3,
+    "water_use_L_per_serving": 50
+  },
+  {
+    "id": 27,
+    "ingredient": "Coconut Chutney",
+    "food_group": "Mixed",
+    "nutrition_score": 5,
+    "ghg_kgco2e_per_serving": 0.4,
+    "water_use_L_per_serving": 150
+  },
+  {
+    "id": 28,
+    "ingredient": "Peanut Chutney",
+    "food_group": "Mixed",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.7,
+    "water_use_L_per_serving": 100
+  },
+  {
+    "id": 29,
+    "ingredient": "Poha",
+    "food_group": "Grain",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 0.65,
+    "water_use_L_per_serving": 380
+  },
+  {
+    "id": 30,
+    "ingredient": "Upma",
+    "food_group": "Grain",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 0.7,
+    "water_use_L_per_serving": 350
+  },
+  {
+    "id": 31,
+    "ingredient": "Idli",
+    "food_group": "Grain",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.6,
+    "water_use_L_per_serving": 300
+  },
+  {
+    "id": 32,
+    "ingredient": "Dosa",
+    "food_group": "Grain",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.9,
+    "water_use_L_per_serving": 350
+  },
+  {
+    "id": 33,
+    "ingredient": "Khichdi",
+    "food_group": "Mixed",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.65,
+    "water_use_L_per_serving": 700
+  },
+  {
+    "id": 34,
+    "ingredient": "Pav Bhaji (veg)",
+    "food_group": "Mixed",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 0.9,
+    "water_use_L_per_serving": 500
+  },
+  {
+    "id": 35,
+    "ingredient": "Chole Bhature",
+    "food_group": "Mixed",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 1.2,
+    "water_use_L_per_serving": 1200
+  },
+  {
+    "id": 36,
+    "ingredient": "Sweet (Ladoo)",
+    "food_group": "Sweet",
+    "nutrition_score": 3,
+    "ghg_kgco2e_per_serving": 0.8,
+    "water_use_L_per_serving": 100
+  },
+  {
+    "id": 37,
+    "ingredient": "Jalebi",
+    "food_group": "Sweet",
+    "nutrition_score": 2,
+    "ghg_kgco2e_per_serving": 0.75,
+    "water_use_L_per_serving": 80
+  },
+  {
+    "id": 38,
+    "ingredient": "Halwa",
+    "food_group": "Sweet",
+    "nutrition_score": 4,
+    "ghg_kgco2e_per_serving": 0.9,
+    "water_use_L_per_serving": 200
+  },
+  {
+    "id": 39,
+    "ingredient": "Raita",
+    "food_group": "Dairy",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.4,
+    "water_use_L_per_serving": 350
+  },
+  {
+    "id": 40,
+    "ingredient": "Buttermilk",
+    "food_group": "Dairy",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.22,
+    "water_use_L_per_serving": 200
+  },
+  {
+    "id": 41,
+    "ingredient": "Lentil Soup",
+    "food_group": "Legume",
+    "nutrition_score": 9,
+    "ghg_kgco2e_per_serving": 0.4,
+    "water_use_L_per_serving": 800
+  },
+  {
+    "id": 42,
+    "ingredient": "Mixed Veg Curry",
+    "food_group": "Vegetable",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.35,
+    "water_use_L_per_serving": 200
+  },
+  {
+    "id": 43,
+    "ingredient": "Pulao",
+    "food_group": "Grain",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 0.9,
+    "water_use_L_per_serving": 700
+  },
+  {
+    "id": 44,
+    "ingredient": "Pasta (veg)",
+    "food_group": "Grain",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 0.95,
+    "water_use_L_per_serving": 1200
+  },
+  {
+    "id": 45,
+    "ingredient": "Sprouts Salad",
+    "food_group": "Legume",
+    "nutrition_score": 9,
+    "ghg_kgco2e_per_serving": 0.25,
+    "water_use_L_per_serving": 500
+  },
+  {
+    "id": 46,
+    "ingredient": "Fruit Salad",
+    "food_group": "Fruit",
+    "nutrition_score": 9,
+    "ghg_kgco2e_per_serving": 0.2,
+    "water_use_L_per_serving": 150
+  },
+  {
+    "id": 47,
+    "ingredient": "Stuffed Paratha",
+    "food_group": "Grain",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.8,
+    "water_use_L_per_serving": 350
+  },
+  {
+    "id": 48,
+    "ingredient": "Aloo Gobhi",
+    "food_group": "Vegetable",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.3,
+    "water_use_L_per_serving": 150
+  },
+  {
+    "id": 49,
+    "ingredient": "Palak Paneer",
+    "food_group": "Mixed",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 1.8,
+    "water_use_L_per_serving": 800
+  },
+  {
+    "id": 50,
+    "ingredient": "Mixed Dal",
+    "food_group": "Legume",
+    "nutrition_score": 9,
+    "ghg_kgco2e_per_serving": 0.55,
+    "water_use_L_per_serving": 900
+  },
+  {
+    "id": 51,
+    "ingredient": "Matar Paneer",
+    "food_group": "Mixed",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 1.9,
+    "water_use_L_per_serving": 900
+  },
+  {
+    "id": 52,
+    "ingredient": "Soya Chunk Curry",
+    "food_group": "Protein",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.6,
+    "water_use_L_per_serving": 2145
+  },
+  {
+    "id": 53,
+    "ingredient": "Wheat Kheer",
+    "food_group": "Dairy+Grain",
+    "nutrition_score": 5,
+    "ghg_kgco2e_per_serving": 1.1,
+    "water_use_L_per_serving": 700
+  },
+  {
+    "id": 54,
+    "ingredient": "Rice Kheer",
+    "food_group": "Dairy+Grain",
+    "nutrition_score": 5,
+    "ghg_kgco2e_per_serving": 1.2,
+    "water_use_L_per_serving": 900
+  },
+  {
+    "id": 55,
+    "ingredient": "Shrikhand",
+    "food_group": "Dairy",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 0.9,
+    "water_use_L_per_serving": 600
+  },
+  {
+    "id": 56,
+    "ingredient": "Lassi",
+    "food_group": "Dairy",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.45,
+    "water_use_L_per_serving": 400
+  },
+  {
+    "id": 57,
+    "ingredient": "Kokum Sharbat",
+    "food_group": "Beverage",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.05,
+    "water_use_L_per_serving": 10
+  },
+  {
+    "id": 58,
+    "ingredient": "Nimbu Paani",
+    "food_group": "Beverage",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 0.04,
+    "water_use_L_per_serving": 8
+  },
+  {
+    "id": 59,
+    "ingredient": "Coconut Water",
+    "food_group": "Beverage",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.12,
+    "water_use_L_per_serving": 60
+  },
+  {
+    "id": 60,
+    "ingredient": "Chaas (buttermilk)",
+    "food_group": "Dairy",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.22,
+    "water_use_L_per_serving": 200
+  },
+  {
+    "id": 61,
+    "ingredient": "Mixed Veg Soup",
+    "food_group": "Vegetable",
+    "nutrition_score": 9,
+    "ghg_kgco2e_per_serving": 0.2,
+    "water_use_L_per_serving": 200
+  },
+  {
+    "id": 62,
+    "ingredient": "Sweet Corn",
+    "food_group": "Vegetable",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.35,
+    "water_use_L_per_serving": 300
+  },
+  {
+    "id": 63,
+    "ingredient": "Beans Sabzi",
+    "food_group": "Vegetable",
+    "nutrition_score": 8,
+    "ghg_kgco2e_per_serving": 0.28,
+    "water_use_L_per_serving": 80
+  },
+  {
+    "id": 64,
+    "ingredient": "Lauki Sabzi",
+    "food_group": "Vegetable",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.18,
+    "water_use_L_per_serving": 65
+  },
+  {
+    "id": 65,
+    "ingredient": "Bhindi (Okra)",
+    "food_group": "Vegetable",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.25,
+    "water_use_L_per_serving": 80
+  },
+  {
+    "id": 66,
+    "ingredient": "Tinda Sabzi",
+    "food_group": "Vegetable",
+    "nutrition_score": 6,
+    "ghg_kgco2e_per_serving": 0.2,
+    "water_use_L_per_serving": 60
+  },
+  {
+    "id": 67,
+    "ingredient": "Kadhi",
+    "food_group": "Dairy",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.5,
+    "water_use_L_per_serving": 400
+  },
+  {
+    "id": 68,
+    "ingredient": "Puri",
+    "food_group": "Grain",
+    "nutrition_score": 4,
+    "ghg_kgco2e_per_serving": 0.75,
+    "water_use_L_per_serving": 180
+  },
+  {
+    "id": 69,
+    "ingredient": "Chutney (mint)",
+    "food_group": "Condiment",
+    "nutrition_score": 7,
+    "ghg_kgco2e_per_serving": 0.05,
+    "water_use_L_per_serving": 15
+  },
+  {
+    "id": 70,
+    "ingredient": "Pickle",
+    "food_group": "Condiment",
+    "nutrition_score": 3,
+    "ghg_kgco2e_per_serving": 0.15,
+    "water_use_L_per_serving": 50
+  }
+]
