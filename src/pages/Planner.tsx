@@ -268,6 +268,8 @@ function DayPanel({
   query,
   setQuery,
   selectedIds,
+  photoUrl,
+  onPhotoChange,
   filteredFoods,
   onToggle,
   onSwap,
@@ -278,6 +280,8 @@ function DayPanel({
   query: string;
   setQuery: (q: string) => void;
   selectedIds: number[];
+  photoUrl: string | null;
+  onPhotoChange: (url: string | null) => void;
   filteredFoods: typeof ALL_FOODS;
   onToggle: (id: number) => void;
   onSwap: (oldId: number, newId: number) => void;
