@@ -182,11 +182,13 @@ export default function Planner() {
           </p>
         </div>
         <Button
+          asChild
           variant="outline"
           className="rounded-full self-start"
-          onClick={() => setProfileSaved(false)}
         >
-          <UserCog className="h-4 w-4 mr-1" /> Edit preferences
+          <Link to="/profile">
+            <UserCog className="h-4 w-4 mr-1" /> Edit profile
+          </Link>
         </Button>
       </div>
 
@@ -243,6 +245,8 @@ export default function Planner() {
               query={query}
               setQuery={setQuery}
               selectedIds={plan[d]}
+              photoUrl={photos[d]}
+              onPhotoChange={(url) => setDayPhoto(d, url)}
               filteredFoods={filtered}
               onToggle={(id) => toggle(d, id)}
               onSwap={(oldId, newId) => {
