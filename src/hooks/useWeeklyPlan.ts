@@ -3,6 +3,7 @@ import type { DayKey, WeeklyPlan } from "@/lib/types";
 
 const KEY = "slsa_weekly_plan";
 const PHOTOS_KEY = "slsa_weekly_photos";
+const NOTES_KEY = "slsa_weekly_notes";
 const DAYS: DayKey[] = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 
 const empty = (): WeeklyPlan =>
@@ -16,6 +17,12 @@ const emptyPhotos = (): Record<DayKey, string | null> =>
     acc[d] = null;
     return acc;
   }, {} as Record<DayKey, string | null>);
+
+const emptyNotes = (): Record<DayKey, string[]> =>
+  DAYS.reduce((acc, d) => {
+    acc[d] = [];
+    return acc;
+  }, {} as Record<DayKey, string[]>);
 
 export function useWeeklyPlan() {
   const [plan, setPlan] = useState<WeeklyPlan>(() => {
