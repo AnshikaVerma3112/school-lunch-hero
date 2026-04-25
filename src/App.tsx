@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 import SustainableMeals from "./pages/SustainableMeals";
 import Planner from "./pages/Planner";
+import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound.tsx";
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/sustainable-meals" element={<SustainableMeals />} />
             <Route path="/planner" element={<Planner />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="*" element={<NotFound />} />

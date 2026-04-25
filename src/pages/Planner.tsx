@@ -20,6 +20,7 @@ import {
 import type { DietPreference, DayKey } from "@/lib/types";
 import { FoodCard } from "@/components/FoodCard";
 import { StatCard } from "@/components/StatCard";
+import { MealPhotoUploader } from "@/components/MealPhotoUploader";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -33,7 +34,7 @@ const DAY_FULL: Record<DayKey, string> = {
 
 export default function Planner() {
   const { user, update } = useAuth();
-  const { plan, toggle, replace, clearDay, days } = useWeeklyPlan();
+  const { plan, photos, toggle, replace, clearDay, setDayPhoto, days } = useWeeklyPlan();
 
   // Profile setup form (age + diet) — required before planning
   const [age, setAge] = useState<string>(user?.age ? String(user.age) : "");
@@ -181,11 +182,13 @@ export default function Planner() {
           </p>
         </div>
         <Button
+          asChild
           variant="outline"
           className="rounded-full self-start"
-          onClick={() => setProfileSaved(false)}
         >
-          <UserCog className="h-4 w-4 mr-1" /> Edit preferences
+          <Link to="/profile">
+            <UserCog className="h-4 w-4 mr-1" /> Edit profile
+          </Link>
         </Button>
       </div>
 
@@ -221,12 +224,19 @@ export default function Planner() {
                 key={d}
                 value={d}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-pop",
+                  "rounded-full pl-1 pr-4 py-1 text-sm font-semibold gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-pop",
                 )}
               >
+                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full overflow-hidden bg-background/40">
+                  {photos[d] ? (
+                    <img src={photos[d]!} alt="" className="h-full w-full object-cover" />
+                  ) : (
+                    <span className="text-[10px] opacity-70">{d[0]}</span>
+                  )}
+                </span>
                 {DAY_FULL[d]}
                 {count > 0 && (
-                  <span className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-background/30 px-1.5 text-[10px] font-bold">
+                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-background/30 px-1.5 text-[10px] font-bold">
                     {count}
                   </span>
                 )}
@@ -242,6 +252,8 @@ export default function Planner() {
               query={query}
               setQuery={setQuery}
               selectedIds={plan[d]}
+              photoUrl={photos[d]}
+              onPhotoChange={(url) => setDayPhoto(d, url)}
               filteredFoods={filtered}
               onToggle={(id) => toggle(d, id)}
               onSwap={(oldId, newId) => {
@@ -263,6 +275,8 @@ function DayPanel({
   query,
   setQuery,
   selectedIds,
+  photoUrl,
+  onPhotoChange,
   filteredFoods,
   onToggle,
   onSwap,
@@ -273,6 +287,8 @@ function DayPanel({
   query: string;
   setQuery: (q: string) => void;
   selectedIds: number[];
+  photoUrl: string | null;
+  onPhotoChange: (url: string | null) => void;
   filteredFoods: typeof ALL_FOODS;
   onToggle: (id: number) => void;
   onSwap: (oldId: number, newId: number) => void;
@@ -332,6 +348,14 @@ function DayPanel({
             <div className="flex items-center justify-between">
               <h3 className="font-display text-xl font-bold">{DAY_FULL[day]}'s tiffin</h3>
               <span className="text-xs text-muted-foreground">{selected.length} item{selected.length !== 1 ? "s" : ""}</span>
+            </div>
+
+            <div className="mt-4">
+              <MealPhotoUploader
+                photoUrl={photoUrl}
+                onChange={onPhotoChange}
+                dayLabel={DAY_FULL[day]}
+              />
             </div>
 
             <div className="mt-4 space-y-2">

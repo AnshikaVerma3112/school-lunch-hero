@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { Leaf, LogIn, LogOut, Menu, Sprout, UserPlus, X } from "lucide-react";
+import { Leaf, LogIn, LogOut, Menu, Sprout, UserCircle2, UserPlus, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
@@ -53,9 +53,12 @@ export default function AppLayout() {
           <div className="hidden md:flex items-center gap-2">
             {user ? (
               <>
-                <span className="text-sm text-muted-foreground">
-                  Hi, <span className="font-semibold text-foreground">{user.name}</span>
-                </span>
+                <Button asChild variant="ghost" size="sm" className="rounded-full">
+                  <Link to="/profile">
+                    <UserCircle2 className="h-4 w-4 mr-1" />
+                    {user.name}
+                  </Link>
+                </Button>
                 <Button variant="outline" size="sm" onClick={logout} className="rounded-full">
                   <LogOut className="h-4 w-4 mr-1" /> Logout
                 </Button>
@@ -108,9 +111,16 @@ export default function AppLayout() {
               ))}
               <div className="pt-2 flex gap-2">
                 {user ? (
-                  <Button variant="outline" size="sm" onClick={() => { logout(); setOpen(false); }} className="rounded-full flex-1">
-                    <LogOut className="h-4 w-4 mr-1" /> Logout
-                  </Button>
+                  <>
+                    <Button asChild variant="outline" size="sm" className="rounded-full flex-1">
+                      <Link to="/profile" onClick={() => setOpen(false)}>
+                        <UserCircle2 className="h-4 w-4 mr-1" /> Profile
+                      </Link>
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => { logout(); setOpen(false); }} className="rounded-full flex-1">
+                      <LogOut className="h-4 w-4 mr-1" /> Logout
+                    </Button>
+                  </>
                 ) : (
                   <>
                     <Button asChild variant="outline" size="sm" className="rounded-full flex-1">
