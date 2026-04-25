@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ArrowRight, Droplet, Leaf, Sparkles, Wind } from "lucide-react";
 import heroTiffin from "@/assets/hero-tiffin.jpg";
 import sustain from "@/assets/sustainability.jpg";
@@ -11,7 +11,6 @@ import { useMemo } from "react";
 
 export default function Dashboard() {
   const { plan, days } = useWeeklyPlan();
-  const navigate = useNavigate();
 
   const totals = useMemo(() => {
     const all = days.flatMap((d) => getFoodsByIds(plan[d]));
@@ -25,8 +24,8 @@ export default function Dashboard() {
     <div>
       {/* Hero */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-hero-gradient opacity-10" aria-hidden />
-        <div className="container py-12 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+        <div className="absolute inset-0 bg-hero-gradient opacity-10 pointer-events-none" aria-hidden />
+        <div className="relative container py-12 md:py-20 grid md:grid-cols-2 gap-10 items-center">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full bg-secondary/15 text-secondary px-3 py-1 text-xs font-semibold">
               <Leaf className="h-3.5 w-3.5" /> School Lunch Sustainability Auditor
@@ -40,25 +39,18 @@ export default function Dashboard() {
               Get smart, kid-friendly swaps to save water and lower CO₂ — without giving up taste!
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button
-                size="lg"
-                className="rounded-full shadow-pop"
-                onClick={() => navigate("/planner")}
-              >
-                Start planning <ArrowRight className="h-4 w-4 ml-1" />
+              <Button asChild size="lg" className="rounded-full shadow-pop">
+                <Link to="/planner">
+                  Start planning <ArrowRight className="h-4 w-4 ml-1" />
+                </Link>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-full"
-                onClick={() => navigate("/sustainable-meals")}
-              >
-                Browse meals
+              <Button asChild size="lg" variant="outline" className="rounded-full">
+                <Link to="/sustainable-meals">Browse meals</Link>
               </Button>
             </div>
           </div>
           <div className="relative">
-            <div className="absolute -inset-4 bg-warm-gradient rounded-[2.5rem] blur-2xl opacity-30" aria-hidden />
+            <div className="absolute -inset-4 bg-warm-gradient rounded-[2.5rem] blur-2xl opacity-30 pointer-events-none" aria-hidden />
             <img
               src={heroTiffin}
               alt="Colorful Indian school lunch tiffin with rice, dal, sabzi and fruit"
