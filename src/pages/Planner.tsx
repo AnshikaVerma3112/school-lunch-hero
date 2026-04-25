@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
-import { CalendarDays, Search, Trash2, UserCog } from "lucide-react";
+import { CalendarDays, Leaf, Search, Sparkles, Trash2, UserCog, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
