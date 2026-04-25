@@ -32,9 +32,18 @@ const DAY_FULL: Record<DayKey, string> = {
   Fri: "Friday",
 };
 
+const QUICK_TIPS: { label: string; emoji: string }[] = [
+  { label: "Eco-friendly Packaging", emoji: "📦" },
+  { label: "Plant-based Meal", emoji: "🌱" },
+  { label: "Zero Waste", emoji: "♻️" },
+  { label: "Local & Seasonal", emoji: "🥭" },
+  { label: "Reusable Tiffin", emoji: "🍱" },
+];
+
 export default function Planner() {
   const { user, update } = useAuth();
-  const { plan, photos, toggle, replace, clearDay, setDayPhoto, days } = useWeeklyPlan();
+  const { plan, photos, notes, toggle, replace, clearDay, setDayPhoto, addNote, removeNote, days } =
+    useWeeklyPlan();
 
   // Profile setup form (age + diet) — required before planning
   const [age, setAge] = useState<string>(user?.age ? String(user.age) : "");
