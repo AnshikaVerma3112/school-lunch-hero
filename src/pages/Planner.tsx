@@ -271,7 +271,13 @@ export default function Planner() {
               }}
               onClear={() => clearDay(d)}
               diet={user.diet}
-            />
+              notes={notes[d] ?? []}
+              onAddNote={(label) => {
+                addNote(d, label);
+                toast.success(`Added "${label}" to ${DAY_FULL[d]} ✨`);
+              }}
+              onRemoveNote={(label) => removeNote(d, label)}
+            />)
           </TabsContent>
         ))}
       </Tabs>
