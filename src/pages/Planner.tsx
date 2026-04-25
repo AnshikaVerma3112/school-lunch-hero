@@ -406,6 +406,71 @@ function DayPanel({
               ))}
             </div>
 
+            {/* Quick-Add Sustainability tags */}
+            <div className="mt-5 rounded-2xl border-2 border-dashed border-secondary/40 bg-secondary/5 p-4">
+              <div className="flex items-center gap-2">
+                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-leaf-gradient shadow-leaf">
+                  <Leaf className="h-3.5 w-3.5 text-primary-foreground" />
+                </span>
+                <div>
+                  <div className="text-sm font-display font-bold">Quick-Add</div>
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                    Sustainability tags
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {QUICK_TIPS.map((tip) => {
+                  const active = notes.includes(tip.label);
+                  return (
+                    <button
+                      key={tip.label}
+                      type="button"
+                      onClick={() => onAddNote(tip.label)}
+                      disabled={active}
+                      className={cn(
+                        "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold transition-bounce border",
+                        active
+                          ? "bg-impact-low-bg text-impact-low border-impact-low/30 opacity-70 cursor-default"
+                          : "bg-card hover:bg-secondary/15 border-border hover:-translate-y-0.5 hover:shadow-pop",
+                      )}
+                    >
+                      <span aria-hidden>{tip.emoji}</span>
+                      {tip.label}
+                      {!active && <Sparkles className="h-3 w-3 opacity-60" />}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {notes.length > 0 && (
+                <div className="mt-3 pt-3 border-t border-secondary/20">
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5">
+                    Your tags for {DAY_FULL[day]}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {notes.map((n) => (
+                      <span
+                        key={n}
+                        className="inline-flex items-center gap-1 rounded-full bg-impact-low-bg text-impact-low px-2 py-0.5 text-xs font-semibold"
+                      >
+                        {n}
+                        <button
+                          type="button"
+                          onClick={() => onRemoveNote(n)}
+                          className="hover:text-destructive"
+                          aria-label={`Remove ${n}`}
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
             <div className="mt-5 grid grid-cols-3 gap-2 text-center">
               <Mini label="Nutri" value={selected.length ? avg.toFixed(1) : "—"} tone="info" />
               <Mini label="CO₂" value={ghg.toFixed(2)} tone={ghg < 1.5 ? "low" : ghg < 4 ? "med" : "high"} />
