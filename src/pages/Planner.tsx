@@ -277,7 +277,7 @@ export default function Planner() {
                 toast.success(`Added "${label}" to ${DAY_FULL[d]} ✨`);
               }}
               onRemoveNote={(label) => removeNote(d, label)}
-            />)
+            />
           </TabsContent>
         ))}
       </Tabs>
@@ -297,6 +297,9 @@ function DayPanel({
   onSwap,
   onClear,
   diet,
+  notes,
+  onAddNote,
+  onRemoveNote,
 }: {
   day: DayKey;
   query: string;
@@ -309,6 +312,9 @@ function DayPanel({
   onSwap: (oldId: number, newId: number) => void;
   onClear: () => void;
   diet?: DietPreference;
+  notes: string[];
+  onAddNote: (label: string) => void;
+  onRemoveNote: (label: string) => void;
 }) {
   const selected = getFoodsByIds(selectedIds);
   const ghg = selected.reduce((s, f) => s + f.ghg_kgco2e_per_serving, 0);
