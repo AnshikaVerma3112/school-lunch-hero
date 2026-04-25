@@ -20,8 +20,10 @@ import {
 import type { DietPreference, DayKey } from "@/lib/types";
 import { FoodCard } from "@/components/FoodCard";
 import { StatCard } from "@/components/StatCard";
+import { MealPhotoUploader } from "@/components/MealPhotoUploader";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const DAY_FULL: Record<DayKey, string> = {
   Mon: "Monday",
@@ -33,7 +35,7 @@ const DAY_FULL: Record<DayKey, string> = {
 
 export default function Planner() {
   const { user, update } = useAuth();
-  const { plan, toggle, replace, clearDay, days } = useWeeklyPlan();
+  const { plan, photos, toggle, replace, clearDay, setDayPhoto, days } = useWeeklyPlan();
 
   // Profile setup form (age + diet) — required before planning
   const [age, setAge] = useState<string>(user?.age ? String(user.age) : "");
