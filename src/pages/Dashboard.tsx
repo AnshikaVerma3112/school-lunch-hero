@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Droplet, Leaf, Sparkles, Wind } from "lucide-react";
 import heroTiffin from "@/assets/hero-tiffin.jpg";
 import sustain from "@/assets/sustainability.jpg";
@@ -11,6 +11,7 @@ import { useMemo } from "react";
 
 export default function Dashboard() {
   const { plan, days } = useWeeklyPlan();
+  const navigate = useNavigate();
 
   const totals = useMemo(() => {
     const all = days.flatMap((d) => getFoodsByIds(plan[d]));
@@ -39,13 +40,20 @@ export default function Dashboard() {
               Get smart, kid-friendly swaps to save water and lower CO₂ — without giving up taste!
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="rounded-full shadow-pop">
-                <Link to="/planner">
-                  Start planning <ArrowRight className="h-4 w-4 ml-1" />
-                </Link>
+              <Button
+                size="lg"
+                className="rounded-full shadow-pop"
+                onClick={() => navigate("/planner")}
+              >
+                Start planning <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full">
-                <Link to="/sustainable-meals">Browse meals</Link>
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-full"
+                onClick={() => navigate("/sustainable-meals")}
+              >
+                Browse meals
               </Button>
             </div>
           </div>
