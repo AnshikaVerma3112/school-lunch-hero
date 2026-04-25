@@ -23,7 +23,6 @@ import { StatCard } from "@/components/StatCard";
 import { MealPhotoUploader } from "@/components/MealPhotoUploader";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
 
 const DAY_FULL: Record<DayKey, string> = {
   Mon: "Monday",
