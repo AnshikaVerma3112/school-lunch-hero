@@ -111,9 +111,16 @@ export default function AppLayout() {
               ))}
               <div className="pt-2 flex gap-2">
                 {user ? (
-                  <Button variant="outline" size="sm" onClick={() => { logout(); setOpen(false); }} className="rounded-full flex-1">
-                    <LogOut className="h-4 w-4 mr-1" /> Logout
-                  </Button>
+                  <>
+                    <Button asChild variant="outline" size="sm" className="rounded-full flex-1">
+                      <Link to="/profile" onClick={() => setOpen(false)}>
+                        <UserCircle2 className="h-4 w-4 mr-1" /> Profile
+                      </Link>
+                    </Button>
+                    <Button variant="outline" size="sm" onClick={() => { logout(); setOpen(false); }} className="rounded-full flex-1">
+                      <LogOut className="h-4 w-4 mr-1" /> Logout
+                    </Button>
+                  </>
                 ) : (
                   <>
                     <Button asChild variant="outline" size="sm" className="rounded-full flex-1">
