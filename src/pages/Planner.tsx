@@ -224,12 +224,19 @@ export default function Planner() {
                 key={d}
                 value={d}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-semibold data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-pop",
+                  "rounded-full pl-1 pr-4 py-1 text-sm font-semibold gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-pop",
                 )}
               >
+                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full overflow-hidden bg-background/40">
+                  {photos[d] ? (
+                    <img src={photos[d]!} alt="" className="h-full w-full object-cover" />
+                  ) : (
+                    <span className="text-[10px] opacity-70">{d[0]}</span>
+                  )}
+                </span>
                 {DAY_FULL[d]}
                 {count > 0 && (
-                  <span className="ml-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-background/30 px-1.5 text-[10px] font-bold">
+                  <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-background/30 px-1.5 text-[10px] font-bold">
                     {count}
                   </span>
                 )}
