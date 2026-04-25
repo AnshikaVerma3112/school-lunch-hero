@@ -3,6 +3,7 @@ import type { DayKey, WeeklyPlan } from "@/lib/types";
 
 const KEY = "slsa_weekly_plan";
 const PHOTOS_KEY = "slsa_weekly_photos";
+const NOTES_KEY = "slsa_weekly_notes";
 const DAYS: DayKey[] = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 
 const empty = (): WeeklyPlan =>
@@ -16,6 +17,12 @@ const emptyPhotos = (): Record<DayKey, string | null> =>
     acc[d] = null;
     return acc;
   }, {} as Record<DayKey, string | null>);
+
+const emptyNotes = (): Record<DayKey, string[]> =>
+  DAYS.reduce((acc, d) => {
+    acc[d] = [];
+    return acc;
+  }, {} as Record<DayKey, string[]>);
 
 export function useWeeklyPlan() {
   const [plan, setPlan] = useState<WeeklyPlan>(() => {
@@ -39,6 +46,16 @@ export function useWeeklyPlan() {
     }
   });
 
+  const [notes, setNotes] = useState<Record<DayKey, string[]>>(() => {
+    try {
+      const raw = localStorage.getItem(NOTES_KEY);
+      if (!raw) return emptyNotes();
+      return { ...emptyNotes(), ...JSON.parse(raw) };
+    } catch {
+      return emptyNotes();
+    }
+  });
+
   useEffect(() => {
     localStorage.setItem(KEY, JSON.stringify(plan));
   }, [plan]);
@@ -50,6 +67,10 @@ export function useWeeklyPlan() {
       // localStorage may overflow with large data URLs — fall back silently
     }
   }, [photos]);
+
+  useEffect(() => {
+    localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
+  }, [notes]);
 
   const toggle = useCallback((day: DayKey, id: number) => {
     setPlan((p) => {
@@ -72,16 +93,42 @@ export function useWeeklyPlan() {
   const clearDay = useCallback((day: DayKey) => {
     setPlan((p) => ({ ...p, [day]: [] }));
     setPhotos((ph) => ({ ...ph, [day]: null }));
+    setNotes((n) => ({ ...n, [day]: [] }));
   }, []);
 
   const clearAll = useCallback(() => {
     setPlan(empty());
     setPhotos(emptyPhotos());
+    setNotes(emptyNotes());
   }, []);
 
   const setDayPhoto = useCallback((day: DayKey, url: string | null) => {
     setPhotos((ph) => ({ ...ph, [day]: url }));
   }, []);
 
-  return { plan, photos, toggle, replace, clearDay, clearAll, setDayPhoto, days: DAYS };
+  const addNote = useCallback((day: DayKey, note: string) => {
+    setNotes((n) => {
+      const cur = n[day] ?? [];
+      if (cur.includes(note)) return n;
+      return { ...n, [day]: [...cur, note] };
+    });
+  }, []);
+
+  const removeNote = useCallback((day: DayKey, note: string) => {
+    setNotes((n) => ({ ...n, [day]: (n[day] ?? []).filter((x) => x !== note) }));
+  }, []);
+
+  return {
+    plan,
+    photos,
+    notes,
+    toggle,
+    replace,
+    clearDay,
+    clearAll,
+    setDayPhoto,
+    addNote,
+    removeNote,
+    days: DAYS,
+  };
 }

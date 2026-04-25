@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
-import { CalendarDays, Search, Trash2, UserCog } from "lucide-react";
+import { CalendarDays, Leaf, Search, Sparkles, Trash2, UserCog, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -32,9 +32,18 @@ const DAY_FULL: Record<DayKey, string> = {
   Fri: "Friday",
 };
 
+const QUICK_TIPS: { label: string; emoji: string }[] = [
+  { label: "Eco-friendly Packaging", emoji: "📦" },
+  { label: "Plant-based Meal", emoji: "🌱" },
+  { label: "Zero Waste", emoji: "♻️" },
+  { label: "Local & Seasonal", emoji: "🥭" },
+  { label: "Reusable Tiffin", emoji: "🍱" },
+];
+
 export default function Planner() {
   const { user, update } = useAuth();
-  const { plan, photos, toggle, replace, clearDay, setDayPhoto, days } = useWeeklyPlan();
+  const { plan, photos, notes, toggle, replace, clearDay, setDayPhoto, addNote, removeNote, days } =
+    useWeeklyPlan();
 
   // Profile setup form (age + diet) — required before planning
   const [age, setAge] = useState<string>(user?.age ? String(user.age) : "");
@@ -262,6 +271,12 @@ export default function Planner() {
               }}
               onClear={() => clearDay(d)}
               diet={user.diet}
+              notes={notes[d] ?? []}
+              onAddNote={(label) => {
+                addNote(d, label);
+                toast.success(`Added "${label}" to ${DAY_FULL[d]} ✨`);
+              }}
+              onRemoveNote={(label) => removeNote(d, label)}
             />
           </TabsContent>
         ))}
@@ -282,6 +297,9 @@ function DayPanel({
   onSwap,
   onClear,
   diet,
+  notes,
+  onAddNote,
+  onRemoveNote,
 }: {
   day: DayKey;
   query: string;
@@ -294,6 +312,9 @@ function DayPanel({
   onSwap: (oldId: number, newId: number) => void;
   onClear: () => void;
   diet?: DietPreference;
+  notes: string[];
+  onAddNote: (label: string) => void;
+  onRemoveNote: (label: string) => void;
 }) {
   const selected = getFoodsByIds(selectedIds);
   const ghg = selected.reduce((s, f) => s + f.ghg_kgco2e_per_serving, 0);
@@ -383,6 +404,71 @@ function DayPanel({
                   </button>
                 </div>
               ))}
+            </div>
+
+            {/* Quick-Add Sustainability tags */}
+            <div className="mt-5 rounded-2xl border-2 border-dashed border-secondary/40 bg-secondary/5 p-4">
+              <div className="flex items-center gap-2">
+                <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-leaf-gradient shadow-leaf">
+                  <Leaf className="h-3.5 w-3.5 text-primary-foreground" />
+                </span>
+                <div>
+                  <div className="text-sm font-display font-bold">Quick-Add</div>
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                    Sustainability tags
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {QUICK_TIPS.map((tip) => {
+                  const active = notes.includes(tip.label);
+                  return (
+                    <button
+                      key={tip.label}
+                      type="button"
+                      onClick={() => onAddNote(tip.label)}
+                      disabled={active}
+                      className={cn(
+                        "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold transition-bounce border",
+                        active
+                          ? "bg-impact-low-bg text-impact-low border-impact-low/30 opacity-70 cursor-default"
+                          : "bg-card hover:bg-secondary/15 border-border hover:-translate-y-0.5 hover:shadow-pop",
+                      )}
+                    >
+                      <span aria-hidden>{tip.emoji}</span>
+                      {tip.label}
+                      {!active && <Sparkles className="h-3 w-3 opacity-60" />}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {notes.length > 0 && (
+                <div className="mt-3 pt-3 border-t border-secondary/20">
+                  <div className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1.5">
+                    Your tags for {DAY_FULL[day]}
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {notes.map((n) => (
+                      <span
+                        key={n}
+                        className="inline-flex items-center gap-1 rounded-full bg-impact-low-bg text-impact-low px-2 py-0.5 text-xs font-semibold"
+                      >
+                        {n}
+                        <button
+                          type="button"
+                          onClick={() => onRemoveNote(n)}
+                          className="hover:text-destructive"
+                          aria-label={`Remove ${n}`}
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="mt-5 grid grid-cols-3 gap-2 text-center">
