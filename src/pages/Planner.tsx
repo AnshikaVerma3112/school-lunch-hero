@@ -343,6 +343,14 @@ function DayPanel({
               <span className="text-xs text-muted-foreground">{selected.length} item{selected.length !== 1 ? "s" : ""}</span>
             </div>
 
+            <div className="mt-4">
+              <MealPhotoUploader
+                photoUrl={photoUrl}
+                onChange={onPhotoChange}
+                dayLabel={DAY_FULL[day]}
+              />
+            </div>
+
             <div className="mt-4 space-y-2">
               {selected.length === 0 && (
                 <p className="text-sm text-muted-foreground py-6 text-center">
