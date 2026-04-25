@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import type { DayKey, WeeklyPlan } from "@/lib/types";
 
 const KEY = "slsa_weekly_plan";
+const PHOTOS_KEY = "slsa_weekly_photos";
 const DAYS: DayKey[] = ["Mon", "Tue", "Wed", "Thu", "Fri"];
 
 const empty = (): WeeklyPlan =>
@@ -10,22 +11,45 @@ const empty = (): WeeklyPlan =>
     return acc;
   }, {} as WeeklyPlan);
 
+const emptyPhotos = (): Record<DayKey, string | null> =>
+  DAYS.reduce((acc, d) => {
+    acc[d] = null;
+    return acc;
+  }, {} as Record<DayKey, string | null>);
+
 export function useWeeklyPlan() {
   const [plan, setPlan] = useState<WeeklyPlan>(() => {
     try {
       const raw = localStorage.getItem(KEY);
       if (!raw) return empty();
       const parsed = JSON.parse(raw);
-      // backfill missing days
       return { ...empty(), ...parsed };
     } catch {
       return empty();
     }
   });
 
+  const [photos, setPhotos] = useState<Record<DayKey, string | null>>(() => {
+    try {
+      const raw = localStorage.getItem(PHOTOS_KEY);
+      if (!raw) return emptyPhotos();
+      return { ...emptyPhotos(), ...JSON.parse(raw) };
+    } catch {
+      return emptyPhotos();
+    }
+  });
+
   useEffect(() => {
     localStorage.setItem(KEY, JSON.stringify(plan));
   }, [plan]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(PHOTOS_KEY, JSON.stringify(photos));
+    } catch {
+      // localStorage may overflow with large data URLs — fall back silently
+    }
+  }, [photos]);
 
   const toggle = useCallback((day: DayKey, id: number) => {
     setPlan((p) => {
@@ -47,9 +71,17 @@ export function useWeeklyPlan() {
 
   const clearDay = useCallback((day: DayKey) => {
     setPlan((p) => ({ ...p, [day]: [] }));
+    setPhotos((ph) => ({ ...ph, [day]: null }));
   }, []);
 
-  const clearAll = useCallback(() => setPlan(empty()), []);
+  const clearAll = useCallback(() => {
+    setPlan(empty());
+    setPhotos(emptyPhotos());
+  }, []);
 
-  return { plan, toggle, replace, clearDay, clearAll, days: DAYS };
+  const setDayPhoto = useCallback((day: DayKey, url: string | null) => {
+    setPhotos((ph) => ({ ...ph, [day]: url }));
+  }, []);
+
+  return { plan, photos, toggle, replace, clearDay, clearAll, setDayPhoto, days: DAYS };
 }
